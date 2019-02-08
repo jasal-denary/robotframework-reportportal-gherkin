@@ -74,8 +74,8 @@ class reportportal_listener(object):  # noqa
                                 "data": fh.read(),
                                 "mime": guess_type(kwname)[0] or "application/octet-stream"
                             }
-
-        RobotService.log(message, attachment)
+        if attachment is not None or message['level'] == 'FAIL':
+            RobotService.log(message, attachment)
 
     def _init_service(self):
         """Init report portal service."""

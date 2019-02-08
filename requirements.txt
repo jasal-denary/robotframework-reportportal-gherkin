@@ -1,2 +1,1 @@
 reportportal-client==3.0.0
-robotframework==3.0.2
