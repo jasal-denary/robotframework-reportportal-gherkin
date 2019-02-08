@@ -108,7 +108,7 @@ class reportportal_listener(object):  # noqa
                     raise Exception("Pabot used but launch_id is not provided. "
                                     "Please, correctly initialize listener with launch_id argument.")			
                 # fill launch description with contents of corresponding variable value
-                suite.doc = self.robot_variables.launch_doc
+                suite.doc = self.robot_variables.launch_doc.replace("?", "\n").replace("!", " ")
                 # automatically creating new report portal launch
                 launch_id = self.robot_service.start_launch(launch_name=self.robot_variables.launch_name,
                                                             launch=suite)
