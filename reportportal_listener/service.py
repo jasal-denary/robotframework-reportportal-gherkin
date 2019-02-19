@@ -2,6 +2,7 @@
 
 import codecs
 import re
+import os
 from time import time
 
 from reportportal_client import ReportPortalService
@@ -176,9 +177,11 @@ class RobotService(object):
         Args:
             test: test object model.
         """
+        build = os.environ['BUILD_NUMBER']
+        job = os.environ['JOB_BASE_NAME']
         start_rq = {
             "name": test.name,
-            "description": test.doc,
+            "description": test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_') + "_" + job + "_" + build + ")",
             "tags": test.tags,
             "start_time": timestamp(),
             "item_type": "STEP"
