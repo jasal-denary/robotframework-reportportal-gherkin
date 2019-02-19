@@ -181,11 +181,12 @@ class RobotService(object):
         job = os.environ['JOB_BASE_NAME']
         start_rq = {
             "name": test.name,
-            "description": test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)",
+            "description": test.doc,
             "tags": test.tags,
             "start_time": timestamp(),
             "item_type": "STEP"
         }
+        #"description": test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)",
         RobotService.rp.start_test_item(**start_rq)
 
     @staticmethod
