@@ -179,9 +179,12 @@ class RobotService(object):
         """
         build = os.environ['BUILD_NUMBER']
         job = os.environ['JOB_BASE_NAME']
+        test_description = test.doc
+        if 'Core' not in job:
+            test_description = test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)",
         start_rq = {
             "name": test.name,
-            "description": test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)",
+            "description": test_description,
             "tags": test.tags,
             "start_time": timestamp(),
             "item_type": "STEP"
