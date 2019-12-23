@@ -148,7 +148,7 @@ class RobotService(object):
         """
         start_rq = {
             "name": name,
-            "description": suite.doc,
+            "description": suite.doc.replace("?", "\n").replace("!", " "),
             "tags": [],
             "start_time": timestamp(),
             "item_type": suite.get_type()
@@ -180,8 +180,8 @@ class RobotService(object):
         build = os.environ['BUILD_NUMBER']
         job = os.environ['JOB_BASE_NAME']
         test_description = test.doc
-        if 'Core' not in job:
-            test_description = test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)"
+        #if 'Core' not in job:
+        #    test_description = test.doc + "\n[Video recording](http://jenkins2.ubilabs.lan:4444/dashboard/cloubi2_" + test.name.replace(',', '_').replace(' ', '_').replace('-', '_') + "_" + job + "_" + build + ".mp4)"
         start_rq = {
             "name": test.name,
             "description": test_description,
