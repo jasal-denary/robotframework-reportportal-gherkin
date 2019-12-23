@@ -119,7 +119,7 @@ class RobotService(object):
         sl_pt = {
             "name": launch_name,
             "start_time": timestamp(),
-            "description": launch.doc,
+            "description": launch.doc.replace("?", "\n").replace("!", " "),
             "mode": mode,
             "tags": Variables.launch_tags
         }
